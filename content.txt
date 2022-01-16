@@ -1,0 +1,27 @@
+- Обработка и логгирование исключений
+  - все спорные моменты в роутах оборачиваем в 'try-except'
+  - errors.py
+    - marshmallow_errors(e)
+  - pip install loguru
+    - from loguru import logger
+    - app/__init__.py -> logger.add(...)
+    - в блоках 'try-except', а также в errors.py добавляем logger.warning(...)
+
+- Обработка исключений SqlAlchemy
+  - переносим обращения к базе данных из роутов в соотв. классы models.py: get_user_list(cls, author_id), save(self), get(cls, tutorial_id, author_id), update(self, **kwargs), delete(self)
+
+- Flask Pluggable Views | как писать view-классы
+  - app/base_view.py
+    - class BaseView(MethodResource)
+  - auth/views.py
+    - class ProfileView(BaseView)
+      - get(self)
+    - ProfileView.register(...)
+  - main/views.py
+    - class VideosListView(BaseView)
+      - get(self)
+    - VideosListView.register
+
+- деплой на Linux сервер с помощью Docker
+  - Dockerfile
+  - 
